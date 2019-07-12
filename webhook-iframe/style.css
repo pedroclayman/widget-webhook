@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.blue {
+  color: #0091ea;
+}
+
+.red {
+  color: #f44336;
+}
+
+.yellow {
+  color: #ffc107;
+}
+
+.green {
+  color: #4caf50;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+}
+
+input[type=text] {
+  margin-top: 5px;
+  font-size: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border: none;
+  padding: 10px;
+  width: 300px;
+}
+
+input[type=text]:focus {
+  outline: none;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.32), 0 0 0 1px rgba(0,0,0,0.16);
+}
+
+label span {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 40px;
+}

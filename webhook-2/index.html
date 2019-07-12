@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <script type="text/javascript">
+  var appOrigin = '*';
+
+window.parent.postMessage({
+    min_supported_version: 1,
+    max_supported_version: 1,
+    message_type: 'widget_hello'
+  }, appOrigin)
+
+window.addEventListener('message', function(event) {
+  if (event.data.message_type === 'app_hello') {
+  debugger;
+    if (event.data.widget_state) {
+      if (event.data.widget_state.body){
+        debugger;
+        textarea.value = event.data.widget_state.body;
+      }
+      if (event.data.widget_state.luckySearch) {
+        luckyRadio.checked = true;
+      } else {
+        normalRadio.checked = true;
+      }
+
+      queryInput.value = event.data.widget_state.query || '';
+    } else {
+        normalRadio.checked = true;
+        queryInput.value = '';
+    }
+
+    window.parent.postMessage({message_type: 'widget_initialized'}, appOrigin)
+  }
+
+  if (event.data.message_type === 'app_request_state') {
+    var jsonBody = '{"commands":[{"name":"crm\/events","data":{"customer_ids":{"cookie":"test"},"company_id":"9931e220-5ca6-11e7-a060-14187733e19e","type":"jakub_test","properties":{"location":"http:\/\/www.abctarify.cz\/","os":"Windows","browser":"Chrome","device":"Other","referrer":"http:\/\/www.abctarify.cz\/","path":"\/"}}}]}';
+    debugger;
+    window.parent.postMessage(
+      {
+        message_type: 'widget_state',
+        webhook: {
+          url: 'https://api.exponea.com/bulk',
+          method: 'POST',
+          response_handling: 'text',
+          auth: null,
+          headers: [],
+          body: jsonBody,
+          event_properties: {
+            google: "test request",
+            google1: "test request"
+          }
+        },
+        widget_state: {
+          luckySearch: luckyRadio.checked,
+          query: queryInput.value,
+          body: jsonBody
+        }
+      }, appOrigin
+    )
+  }
+
+
+});
+</script>
+</head>
+<body>
+  <h1>
+    <span class="blue">G</span><!--
+    --><span class="red">o</span><!--
+    --><span class="yellow">o</span><!--
+    --><span class="blue">g</span><!--
+    --><span class="green">l</span><!--
+    --><span class="red">e</span>
+    search
+  </h1>
+
+  <label>
+    <span>Search query:</span>
+    <br>
+    <input type="text" id="queryInput">
+  </label>
+
+  <label>
+    <input type="radio" name="search-type" id="normalRadio">
+    <span>Basic search</span>
+  </label>
+
+  <label>
+    <input type="radio" name="search-type" id="luckyRadio">
+    <span>I'm feeling lucky</span>
+  </label>
+  <textarea id="textarea"> </textarea>
+</body>
+</html>
