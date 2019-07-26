@@ -36,7 +36,9 @@ window.addEventListener('message', function(event) {
           auth: null,
           headers: [],
           body: '',
-          event_properties: {}
+          event_properties: {},
+          consent_category: 'foo'
+
         },
         widget_state: {
           luckySearch: luckyRadio.checked,
