@@ -26,6 +26,8 @@ window.addEventListener('message', function(event) {
   }
 
   if (event.data.message_type === 'app_request_state') {
+
+
     window.parent.postMessage(
       {
         message_type: 'widget_state',
@@ -37,8 +39,8 @@ window.addEventListener('message', function(event) {
           headers: [],
           body: '',
           event_properties: {},
-          consent_category: 'foo'
-
+          consent_category: 'foo',
+          ...getQueryParams()
         },
         widget_state: {
           luckySearch: luckyRadio.checked,
@@ -50,3 +52,16 @@ window.addEventListener('message', function(event) {
 
 
 });
+
+
+function getQueryParams() {
+    const queryString = window.location.search.substring(1);
+    const keyEqualsValueEntries = queryString.split('&');
+    const result = {};
+
+    for (let i = 0; i < keyEqualsValueEntries.length; i++) {
+        const pair = keyEqualsValueEntries[i].split('=');
+        result[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    }
+    return result;
+}
