@@ -50,20 +50,7 @@ window.addEventListener('message', function(event) {
           auth: null,
           headers: [],
           body: '',
-          event_properties: {
-            fooObj: {
-              name: 'foo',
-              age: 123,
-            },
-            fooNumber: 123456,
-            fooMixedArray: [
-              {
-                name: 'first item in array'
-              },
-              1234,
-              'nameIsHere',
-            ]
-          },
+          event_properties: {},
           consent_category: consentCategory.value || undefined,
           general_consent: generalConsent.value === 'true' ? true : generalConsent.value === 'false' ? false : undefined,
           ...getQueryParams()
