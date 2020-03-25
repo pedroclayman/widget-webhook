@@ -51,6 +51,7 @@ window.addEventListener('message', function(event) {
           headers: [],
           body: '',
           event_properties: {},
+          parametrized_parts: {},
           consent_category: consentCategory.value || undefined,
           general_consent: generalConsent.value === 'true' ? true : generalConsent.value === 'false' ? false : undefined,
           ...getQueryParams()
