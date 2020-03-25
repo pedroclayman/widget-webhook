@@ -9,7 +9,7 @@ the query parameters.
 For instance using `?foo=bar` will include 
 ```json
 {
-    ///...
-    foo: 'bar'
+    /* ... */
+    "foo": "bar"
 }
 ```
