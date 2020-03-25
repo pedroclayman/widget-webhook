@@ -31,7 +31,12 @@
     <input type="radio" name="search-type" id="luckyRadio">
     <span>I'm feeling lucky</span>
   </label>
-
+  <hr>
+  <p>
+    You can customize the payload returned from this page upon containing page 
+    requests in (postMessage `app_request_state`).
+    Custom JSON upserts the data model with the JSON specified.
+  </p>
   <label>
     <span>Consent category:</span>
     <br>
@@ -46,6 +51,11 @@
       <option value="true">true</option>
       <option value="false">false</option>
     </select>
+  </label>
+  <label>
+    <span>Custom JSON</span>
+    <br>
+    <textarea id="customJson"></textarea>
   </label>
 
   <hr>

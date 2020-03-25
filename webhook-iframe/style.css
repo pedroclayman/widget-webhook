@@ -38,6 +38,11 @@ input[type=text]:focus {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.32), 0 0 0 1px rgba(0,0,0,0.16);
 }
 
+textarea {
+  width: 500px;
+  height: 300px;
+}
+
 label span {
   font-size: 20px;
 }

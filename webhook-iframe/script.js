@@ -23,15 +23,8 @@ window.addEventListener('message', function(event) {
     }
 
     if (event.data.webhook) {
-      consentCategory.value = event.data.webhook.consent_category == null ? '' : event.data.webhook.consent_category;
-
-      if (event.data.webhook.general_consent === true) {
-        generalConsent.value = true;
-      } else if (event.data.webhook.general_consent === false) {
-        generalConsent.value = false;
-      } else {
-        generalConsent.value = '';
-      }
+      var customJsonTextArea = document.getElementById('customJson');
+      customJsonTextArea.value = JSON.stringify(event.data.webhook);
     }
 
     window.parent.postMessage({message_type: 'widget_initialized'}, appOrigin)
@@ -39,6 +32,7 @@ window.addEventListener('message', function(event) {
 
   if (event.data.message_type === 'app_request_state') {
 
+    var customJsonTextArea = document.getElementById('customJson');
 
     window.parent.postMessage(
       {
@@ -54,7 +48,8 @@ window.addEventListener('message', function(event) {
           parametrized_parts: {},
           consent_category: consentCategory.value || undefined,
           general_consent: generalConsent.value === 'true' ? true : generalConsent.value === 'false' ? false : undefined,
-          ...getQueryParams()
+          ...getQueryParams(),
+          ...JSON.parse(customJsonTextArea.value),
         },
         widget_state: {
           luckySearch: luckyRadio.checked,
