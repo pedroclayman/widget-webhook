@@ -39,8 +39,9 @@ input[type=text]:focus {
 }
 
 textarea {
-  width: 500px;
+  width: 100%;
   height: 300px;
+  font-size: 20px;
 }
 
 label span {
